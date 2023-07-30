@@ -1,21 +1,31 @@
 # Terraform Provider Email
 
-Run the following command to build the provider
+Terraform provider for sending emails.
 
-```shell
-go build -o terraform-provider-email
+## Development
+
+```bash
+go tidy # install dependencies
+make build # build the provider
+make install # install the provider
 ```
 
-## Test sample configuration
+Please see `./examples` for example usage.
 
-First, build and install the provider.
+## Testing
 
-```shell
-make install
+First start a local SMTP server:
+
+```bash
+docker run --rm -it -p 3000:80 -p 2525:25 rnwood/smtp4dev:v3
 ```
 
-Then, run the following command to initialize the workspace and apply the sample configuration.
+Then run the acceptance tests:
 
-```shell
-terraform init && terraform apply
+```bash
+make testacc
 ```
+
+## References
+
+https://developer.hashicorp.com/terraform/tutorials/providers/provider-setup
