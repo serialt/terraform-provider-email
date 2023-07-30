@@ -34,6 +34,11 @@ func resourceEmail() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"preamble": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "",
+			},
 			"body": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -62,8 +67,9 @@ func resourceEmail() *schema.Resource {
 func resourceEmailCreate(d *schema.ResourceData, m interface{}) error {
 	to := d.Get("to").(string)
 	from := d.Get("from").(string)
-	replyTo := d.Get("reply_to").(string) // Get the reply_to field
+	replyTo := d.Get("reply_to").(string)
 	subject := d.Get("subject").(string)
+	preamble := d.Get("preamble").(string)
 	body := d.Get("body").(string)
 	smtpServer := d.Get("smtp_server").(string)
 	smtpPort := d.Get("smtp_port").(string)
@@ -73,7 +79,8 @@ func resourceEmailCreate(d *schema.ResourceData, m interface{}) error {
 	msg := "From: " + from + "\n" +
 		"To: " + to + "\n" +
 		"Reply-To: " + replyTo + "\n" +
-		"Subject: " + subject + "\n\n" +
+		"Subject: " + subject + "\n" +
+		preamble + "\n\n" +
 		body
 
 	err := smtp.SendMail(smtpServer+":"+smtpPort,
