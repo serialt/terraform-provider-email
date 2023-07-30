@@ -1,13 +1,13 @@
 terraform {
   required_providers {
-    hashicups = {
+    email = {
       version = "0.2"
-      source  = "hashicorp.com/edu/hashicups"
+      source  = "watonomous.ca/tf/email"
     }
   }
 }
 
-provider "hashicups" {}
+provider "email" {}
 
 module "psl" {
   source = "./coffee"

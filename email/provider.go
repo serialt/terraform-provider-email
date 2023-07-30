@@ -1,4 +1,4 @@
-package hashicups
+package email
 
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
