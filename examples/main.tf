@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     email = {
-      version = "0.2.1"
+      version = "0.2.3"
       source  = "watonomous.ca/tf/email"
     }
   }
