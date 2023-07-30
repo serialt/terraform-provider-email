@@ -26,6 +26,12 @@ Then run the acceptance tests:
 make testacc
 ```
 
+## Generate docs
+
+```bash
+go generate ./...
+```
+
 ## References
 
 https://developer.hashicorp.com/terraform/tutorials/providers/provider-setup
