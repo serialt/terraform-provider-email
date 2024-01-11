@@ -15,51 +15,55 @@ func resourceEmail() *schema.Resource {
 		Read:   resourceEmailRead,
 		Update: resourceEmailUpdate,
 		Delete: resourceEmailDelete,
+		Schema: emailResourceSchema(),
+	}
 
-		Schema: map[string]*schema.Schema{
-			"to": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"from": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"reply_to": &schema.Schema{ // Add this field
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "",
-			},
-			"subject": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"preamble": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Default:  "",
-			},
-			"body": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"smtp_server": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"smtp_port": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"smtp_username": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"smtp_password": &schema.Schema{
-				Type:      schema.TypeString,
-				Required:  true,
-				Sensitive: true,
-			},
+}
+
+func emailResourceSchema() map[string]*schema.Schema {
+	return map[string]*schema.Schema{
+		"to": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"from": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"reply_to": { // Add this field
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "",
+		},
+		"subject": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"preamble": {
+			Type:     schema.TypeString,
+			Optional: true,
+			Default:  "",
+		},
+		"body": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"smtp_server": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"smtp_port": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"smtp_username": {
+			Type:     schema.TypeString,
+			Required: true,
+		},
+		"smtp_password": {
+			Type:      schema.TypeString,
+			Required:  true,
+			Sensitive: true,
 		},
 	}
 }
